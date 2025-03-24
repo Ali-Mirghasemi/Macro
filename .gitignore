@@ -1,0 +1,8 @@
+.vscode/
+
+*.depend
+*.exe
+*.layout
+*.o
+*.c~
+*.o~
