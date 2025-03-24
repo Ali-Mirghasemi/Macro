@@ -29,5 +29,12 @@
  * @return number of inputs
  */
 #define MACRO_VA_ARGS_LEN(...)                              __MACRO_VA_ARGS_LEN(__VA_ARGS__)                
+/**
+ * @brief Concatenate inputs and convert it to string
+ * 
+ * @param multiple inputs
+ * @return string
+ */
+#define MACRO_STR(...)                                      __MACRO_STR(__VA_ARGS__)
 
 #endif // _MACRO_H_
