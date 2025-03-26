@@ -31,6 +31,13 @@
  */
 #define MACRO_VA_ARGS_LEN(...)                              __MACRO_VA_ARGS_LEN(__VA_ARGS__)                
 /**
+ * @brief Return 0 if there is more inputs, if length of inputs is 0 or 1 returns 1
+ * 
+ * @param inputs
+ * @return 0 or 1
+ */
+#define MACRO_VA_ARGS_CHECK_END(...)                        __MACRO_VA_ARGS_CHECK_END(__VA_ARGS__)                
+/**
  * @brief Concatenate inputs and convert it to string
  * 
  * @param multiple inputs
