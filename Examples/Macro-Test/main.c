@@ -46,6 +46,12 @@ Assert_Line Test_VA_ARGS(void) {
     assertReturnLine(MACRO_VA_ARGS_LEN(A, B, C), 3);
     assertReturnLine(MACRO_VA_ARGS_LEN( , X), 2);
 
+    assertReturnLine(MACRO_VA_ARGS_CHECK_END(), 1);
+    assertReturnLine(MACRO_VA_ARGS_CHECK_END(A), 1);
+    assertReturnLine(MACRO_VA_ARGS_CHECK_END(A, B), 0);
+    assertReturnLine(MACRO_VA_ARGS_CHECK_END(A, B, C), 0);
+    assertReturnLine(MACRO_VA_ARGS_CHECK_END( , X), 0);
+
     return 0;
 }
 
