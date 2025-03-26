@@ -115,11 +115,10 @@ Assert_Line Test_For(void) {
     assertReturnLine(Str, MY_Template_ARR[MyEnum_Template_C1], "Template-C1");
 
     // -----------------------------------------------
-    #define __MY_FN_TUPLE_(X, Y)    MACRO_STR(X, <=>, Y),
-    #define __MY_FN_TUPLE(X)        __MY_FN_TUPLE_ X
+    #define __MY_FN_TUPLE(X, Y)    MACRO_STR(X, <=>, Y),
 
     const char* ARR2_LEFT[] = {
-        MACRO_FOR(__MY_FN_TUPLE, (A, 1), (B, 2), (C, 3))
+        MACRO_FOR_TUPLE(__MY_FN_TUPLE, (A, 1), (B, 2), (C, 3))
     };
 
     const char* ARR2_RIGHT[] = {
