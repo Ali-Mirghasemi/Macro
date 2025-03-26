@@ -45,6 +45,13 @@
  */
 #define MACRO_FOR(FN, ...)                                  __MACRO_FOR(FN, __VA_ARGS__)
 /**
+ * @brief For each over given tuple parameters
+ * 
+ * @param FN macro that want to use for every inputs
+ * @param list of inputs
+ */
+#define MACRO_FOR_TUPLE(FN, ...)                            __MACRO_FOR_TUPLE(FN, __VA_ARGS__)
+/**
  * @brief For each over given parameters
  * 
  * @param FN macro that want to use for every inputs
