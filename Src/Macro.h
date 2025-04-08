@@ -37,7 +37,19 @@
  * @param inputs
  * @return 0 or 1
  */
-#define MACRO_VA_ARGS_CHECK_END(...)                        __MACRO_VA_ARGS_CHECK_END(__VA_ARGS__)                
+#define MACRO_VA_ARGS_CHECK_END(...)                        __MACRO_VA_ARGS_CHECK_END(__VA_ARGS__)
+/**
+ * @brief Map given tuple to number of inputs
+ * Ex: MAP -> (TwoInput, OneInput, ZeroInput)
+ *     MACRO_VA_ARGS_MAP((TwoInput, OneInput, ZeroInput))           -> ZeroInput
+ *     MACRO_VA_ARGS_MAP((TwoInput, OneInput, ZeroInput), One)      -> OneInput
+ *     MACRO_VA_ARGS_MAP((TwoInput, OneInput, ZeroInput), One, Two) -> TwoInput
+ * 
+ * @param MAP macro set in tuple format
+ * @param list of inputs
+ * @return returns MAP[len(list)]
+ */
+#define MACRO_VA_ARGS_MAP(MAP, ...)                         __MACRO_VA_ARGS_MAP(MAP, __VA_ARGS__)
 /**
  * @brief Concatenate inputs and convert it to string
  * 
