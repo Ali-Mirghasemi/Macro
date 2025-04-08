@@ -3,8 +3,8 @@
 
 
 #if defined(__STDC_VERSION__) && __STDC_VERSION__ >= 201112L
-    #define __MACRO_VA_ARGS_LEN(...)                    __MACRO_VA_ARGS_N(__VA_OPT__(,) ##__VA_ARGS__, __MACRO_VA_ARGS_N_MAP(99))
-    #define __MACRO_VA_ARGS_CHECK_END(...)              __MACRO_VA_ARGS_N(__VA_OPT__(,) ##__VA_ARGS__, __MACRO_VA_ARGS_N_CHECK_END())
+    #define __MACRO_VA_ARGS_LEN(...)                        __MACRO_VA_ARGS_N(__VA_OPT__(,) ##__VA_ARGS__, __MACRO_VA_ARGS_N_MAP(99))
+    #define __MACRO_VA_ARGS_CHECK_END(...)                  __MACRO_VA_ARGS_N(__VA_OPT__(,) ##__VA_ARGS__, __MACRO_VA_ARGS_N_CHECK_END())
 #else
     #define __MACRO_VA_ARGS_LEN(...)                        __MACRO_VA_ARGS_N(_, ##__VA_ARGS__, __MACRO_VA_ARGS_N_MAP(99))
     #define __MACRO_VA_ARGS_CHECK_END(...)                  __MACRO_VA_ARGS_N(_, ##__VA_ARGS__, __MACRO_VA_ARGS_N_CHECK_END())
