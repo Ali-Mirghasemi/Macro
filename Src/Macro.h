@@ -82,5 +82,12 @@
  * @param X Tuple arguments
  */
 #define MACRO_TUPLE_EXPAND(X)                               __MACRO_TUPLE_EXPAND(X)
+/**
+ * @brief Use Fn with given arguments
+ * 
+ * @param FN Macro like function as input
+ * @param list of inputs
+ */
+#define MACRO_FN(FN, ...)                                   __MACRO_FN(FN, __VA_ARGS__)
 
 #endif // _MACRO_H_
