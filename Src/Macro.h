@@ -11,6 +11,7 @@
 #ifndef _MACRO_H_
 #define _MACRO_H_
 
+#include "Macro_Utils.h"
 #include "Macro_VA.h"
 #include "Macro_Str.h"
 #include "Macro_For.h"
@@ -74,5 +75,12 @@
  * @param list of inputs
  */
 #define MACRO_FOR_TUPLE_ARG(FN, ARG, ...)                   __MACRO_FOR_TUPLE_ARG(FN, ARG, __VA_ARGS__)
+/**
+ * @brief Expand a tuple to usable arguments
+ * Ex: (A, B, C) -> A, B, C
+ * 
+ * @param X Tuple arguments
+ */
+#define MACRO_TUPLE_EXPAND(X)                               __MACRO_TUPLE_EXPAND(X)
 
 #endif // _MACRO_H_
