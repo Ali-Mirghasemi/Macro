@@ -101,5 +101,12 @@
  * @param list of inputs
  */
 #define MACRO_FN(FN, ...)                                   __MACRO_FN(FN, __VA_ARGS__)
+/**
+ * @brief Map list of macro functions based on number of inputs
+ * 
+ * @param FN_MAP tuple of macro functions
+ * @param list of inputs
+ */
+#define MACRO_FN_MAP(FN_MAP, ...)                           __MACRO_FN_MAP(FN_MAP, __VA_ARGS__)
 
 #endif // _MACRO_H_
