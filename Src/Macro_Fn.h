@@ -9,6 +9,6 @@
 
 #define __MACRO_FN_MAP__(FN_MAP, ...)                   __MACRO_FN(__MACRO_VA_ARGS_MAP(FN_MAP, __VA_ARGS__), __VA_ARGS__)
 #define __MACRO_FN_MAP_(FN_MAP, ...)                    __MACRO_FN_MAP__(FN_MAP, __VA_ARGS__)
-#define __MACRO_FN_MAP(FN_MAP, ...)                     __MACRO_FN_MAP(FN_MAP, __VA_ARGS__)
+#define __MACRO_FN_MAP(FN_MAP, ...)                     __MACRO_FN_MAP_(FN_MAP, __VA_ARGS__)
 
 #endif // _MACRO_FN_H_
