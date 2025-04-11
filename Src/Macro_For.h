@@ -3,6 +3,7 @@
 
 #include "Macro_Utils.h"
 #include "Macro_VA.h"
+#include "Macro_Fn.h"
 
 #define __MACRO_FOR(FN, ...)                            __MACRO_FOR_ROOT(FN, __MACRO_VA_ARGS_LEN(__VA_ARGS__), __VA_ARGS__)
 
