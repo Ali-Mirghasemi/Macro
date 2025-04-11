@@ -5,14 +5,15 @@ typedef Assert_Line (*TestCase_Fn)(void);
 
 Assert_Line Test_VA_ARGS(void);
 Assert_Line Test_Str(void);
-Assert_Line Test_For(void);
 Assert_Line Test_Fn(void);
+Assert_Line Test_For(void);
+
 
 static const TestCase_Fn TESTS[] = {
     Test_VA_ARGS,
     Test_Str,
-    Test_For,
     Test_Fn,
+    Test_For,
 };
 static const uint32_t TESTES_LEN = sizeof(TESTS) / sizeof(TESTS[0]);
 
@@ -83,6 +84,38 @@ Assert_Line Test_Str(void) {
 
     return 0;
 }
+
+Assert_Line Test_Fn(void) {
+    ASSERT_PRINT_HEADER("Fn", 64, '-');
+
+    #define __FN_ZERO()             "ZeroInput"
+    #define __FN_ONE(A)             "One-" #A
+    #define __FN_TWO(A, B)          "Two-" #A "-" #B
+    #define __FN_THREE(A, B, C)     "Three-" #A "-" #B "-" #C
+
+    assertReturnLine(Str, MACRO_FN(__FN_ZERO), "ZeroInput");
+    assertReturnLine(Str, MACRO_FN(__FN_ONE, X1), "One-X1");
+    assertReturnLine(Str, MACRO_FN(__FN_TWO, A1, B2), "Two-A1-B2");
+    assertReturnLine(Str, MACRO_FN(__FN_THREE, A, B, C), "Three-A-B-C");
+
+    assertReturnLine(Str, MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO)), "ZeroInput");
+    assertReturnLine(Str, MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO), AAA), "One-AAA");
+    assertReturnLine(Str, MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO), XXX, ZZZ), "Two-XXX-ZZZ");
+    assertReturnLine(Str, MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO), 1, 2, 3), "Three-1-2-3");
+
+    #define __FN_ARG_ZERO(ARG)                  #ARG "-ZeroInput"
+    #define __FN_ARG_ONE(ARG, A)                #ARG "-One-" #A
+    #define __FN_ARG_TWO(ARG, A, B)             #ARG "-Two-" #A "-" #B
+    #define __FN_ARG_THREE(ARG, A, B, C)        #ARG "-Three-" #A "-" #B "-" #C
+
+    assertReturnLine(Str, MACRO_FN_MAP_ARG((__FN_ARG_THREE, __FN_ARG_TWO, __FN_ARG_ONE, __FN_ARG_ZERO), MyArg), "MyArg-ZeroInput");
+    assertReturnLine(Str, MACRO_FN_MAP_ARG((__FN_ARG_THREE, __FN_ARG_TWO, __FN_ARG_ONE, __FN_ARG_ZERO), MyArg, AAA), "MyArg-One-AAA");
+    assertReturnLine(Str, MACRO_FN_MAP_ARG((__FN_ARG_THREE, __FN_ARG_TWO, __FN_ARG_ONE, __FN_ARG_ZERO), MyArg, XXX, ZZZ), "MyArg-Two-XXX-ZZZ");
+    assertReturnLine(Str, MACRO_FN_MAP_ARG((__FN_ARG_THREE, __FN_ARG_TWO, __FN_ARG_ONE, __FN_ARG_ZERO), MyArg, 1, 2, 3), "MyArg-Three-1-2-3");
+
+    return 0;
+}
+
 
 Assert_Line Test_For(void) {
     ASSERT_PRINT_HEADER("For", 64, '-');
@@ -176,26 +209,49 @@ Assert_Line Test_For(void) {
 
     assertReturnLine(StrList, TUPLE_ARRAY_MY, TUPLE_ARRAY_RIGHT, 4);
 
-    return 0;
-}
+    // Macro For: array of macro functions and list of tuples
+    #define __FN_MAP_0()            "NoInput",
+    #define __FN_MAP_1(A)           "O1-" #A ,
+    #define __FN_MAP_2(A, B)        "O2-" #A "-" #B ,
+    #define __FN_MAP_3(A, B, C)     "O3-" #A "-" #B "-" #C ,
 
-Assert_Line Test_Fn(void) {
-    ASSERT_PRINT_HEADER("Fn", 64, '-');
+    const char* TEST_ARRAY_LEFT[] = {
+        MACRO_FOR_MAP((__FN_MAP_3, __FN_MAP_2, __FN_MAP_1, __FN_MAP_0),
+            (),
+            (A, B),
+            (A),
+            (A, B, C)
+        )
+    };
+    const char* TEST_ARRAY_RIGHT[] = {
+        "NoInput",
+        "O2-A-B",
+        "O1-A",
+        "O3-A-B-C",
+    };
+    assertReturnLine(StrList, TEST_ARRAY_LEFT, TEST_ARRAY_RIGHT, 4);
 
-    #define __FN_ZERO()             "ZeroInput"
-    #define __FN_ONE(A)             "One-" #A
-    #define __FN_TWO(A, B)          "Two-" #A "-" #B
-    #define __FN_THREE(A, B, C)     "Three" #A "-" #B "-" #C
+    // Macro For: array of macro functions and list of tuples and given argument
+    #define __FN_MAP_ARG_0(ARG)              #ARG "-NoInput",
+    #define __FN_MAP_ARG_1(ARG, A)           #ARG "-O1-" #A ,
+    #define __FN_MAP_ARG_2(ARG, A, B)        #ARG "-O2-" #A "-" #B ,
+    #define __FN_MAP_ARG_3(ARG, A, B, C)     #ARG "-O3-" #A "-" #B "-" #C ,
 
-    assertReturnLine(MACRO_FN(__FN_ZERO), "ZeroInput");
-    assertReturnLine(MACRO_FN(__FN_ONE, X1), "One-X1");
-    assertReturnLine(MACRO_FN(__FN_TWO, A1, B2), "Two-A1-B2");
-    assertReturnLine(MACRO_FN(__FN_THREE, A, B, C), "Three-A-B-C");
-
-    assertReturnLine(MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO)), "ZeroInput");
-    assertReturnLine(MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO), AAA), "One-AAA");
-    assertReturnLine(MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO), XXX, ZZZ), "Two-XXX-ZZZ");
-    assertReturnLine(MACRO_FN_MAP((__FN_THREE, __FN_TWO, __FN_ONE, __FN_ZERO), 1, 2, 3), "Three-1-2-3");
+    const char* TEST_ARRAY_LEFT2[] = {
+        MACRO_FOR_MAP_ARG((__FN_MAP_ARG_3, __FN_MAP_ARG_2, __FN_MAP_ARG_1, __FN_MAP_ARG_0), MyArg,
+            (),
+            (A, B),
+            (A),
+            (A, B, C)
+        )
+    };
+    const char* TEST_ARRAY_RIGHT2[] = {
+        "MyArg-NoInput",
+        "MyArg-O2-A-B",
+        "MyArg-O1-A",
+        "MyArg-O3-A-B-C",
+    };
+    assertReturnLine(StrList, TEST_ARRAY_LEFT2, TEST_ARRAY_RIGHT2, 4);
 
     return 0;
 }
