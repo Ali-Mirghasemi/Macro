@@ -12,6 +12,7 @@
 #define _MACRO_H_
 
 #include "Macro_Utils.h"
+#include "Macro_Fn.h"
 #include "Macro_VA.h"
 #include "Macro_Str.h"
 #include "Macro_For.h"
@@ -23,7 +24,7 @@
  * @param ARR array name
  * @return array length
  */
-#define MACRO_ARRAY_LEN(ARR)                                (sizeof(ARR) / sizeof(ARR[0]))
+#define MACRO_ARRAY_LEN(ARR)                                __MACRO_ARRAY_LEN(ARR)
 /**
  * @brief Return number of inputs
  * 
@@ -58,6 +59,35 @@
  */
 #define MACRO_STR(...)                                      __MACRO_STR(__VA_ARGS__)
 /**
+ * @brief Expand a tuple to usable arguments
+ * Ex: (A, B, C) -> A, B, C
+ * 
+ * @param X Tuple arguments
+ */
+#define MACRO_TUPLE_EXPAND(X)                               __MACRO_TUPLE_EXPAND(X)
+/**
+ * @brief Use Fn with given arguments
+ * 
+ * @param FN Macro like function as input
+ * @param list of inputs
+ */
+#define MACRO_FN(FN, ...)                                   __MACRO_FN(FN, __VA_ARGS__)
+/**
+ * @brief Map list of macro functions based on number of inputs
+ * 
+ * @param FN_MAP tuple of macro functions
+ * @param list of inputs
+ */
+#define MACRO_FN_MAP(FN_MAP, ...)                           __MACRO_FN_MAP(FN_MAP, __VA_ARGS__)
+/**
+ * @brief Map list of macro functions based on number of inputs
+ * 
+ * @param FN_MAP tuple of macro functions
+ * @param ARG given argument that pass to FN
+ * @param list of inputs
+ */
+#define MACRO_FN_MAP_ARG(FN_MAP, ARG, ...)                  __MACRO_FN_MAP_ARG(FN_MAP, ARG, __VA_ARGS__)
+/**
  * @brief For each over given parameters
  * 
  * @param FN macro that want to use for every inputs
@@ -88,25 +118,20 @@
  */
 #define MACRO_FOR_TUPLE_ARG(FN, ARG, ...)                   __MACRO_FOR_TUPLE_ARG(FN, ARG, __VA_ARGS__)
 /**
- * @brief Expand a tuple to usable arguments
- * Ex: (A, B, C) -> A, B, C
+ * @brief For each over given parameters and Map list of macro functions based on number of inputs
  * 
- * @param X Tuple arguments
- */
-#define MACRO_TUPLE_EXPAND(X)                               __MACRO_TUPLE_EXPAND(X)
-/**
- * @brief Use Fn with given arguments
- * 
- * @param FN Macro like function as input
+ * @param FN_MAP list of macro functions
  * @param list of inputs
  */
-#define MACRO_FN(FN, ...)                                   __MACRO_FN(FN, __VA_ARGS__)
+#define MACRO_FOR_MAP(FN_MAP, ...)                          __MACRO_FOR_MAP(FN_MAP, __VA_ARGS__)
 /**
- * @brief Map list of macro functions based on number of inputs
+ * @brief For each over given parameters and Map list of macro functions based on number of inputs
+ * with argument that pass to each macro function
  * 
- * @param FN_MAP tuple of macro functions
+ * @param FN_MAP list of macro functions
+ * @param ARG argument
  * @param list of inputs
  */
-#define MACRO_FN_MAP(FN_MAP, ...)                           __MACRO_FN_MAP(FN_MAP, __VA_ARGS__)
+#define MACRO_FOR_MAP_ARG(FN_MAP, ARG, ...)                 __MACRO_FOR_MAP_ARG(FN_MAP, ARG, __VA_ARGS__)
 
 #endif // _MACRO_H_
