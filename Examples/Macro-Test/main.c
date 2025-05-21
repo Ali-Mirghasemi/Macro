@@ -275,7 +275,13 @@ Assert_Line Test_Join(void) {
     const char* TEST3_RESULT = MACRO_JOIN_FN_ARG(",", __MY_JOIN_FN_ARG, __MY_JOIN_ARG, X, Y, Z);
     const char* TEST3_EXPECTED = "joinArg-X,joinArg-Y,joinArg-Z";
     assertReturnLine(Str, TEST3_RESULT, TEST3_EXPECTED);
-    
+    // Join Fn Tuple
+    #define __MY_JOIN_FN_TUPLE(A, B)        MACRO_STR((A + B))
+    const char* TEST4_RESULT = MACRO_JOIN_FN_TUPLE(" | ", __MY_JOIN_FN_TUPLE, (X, Y), (A, B));
+    const char* TEST4_EXPECTED = "(X + Y) | (A + B)";
+        
+    assertReturnLine(Str, TEST4_RESULT, TEST4_EXPECTED);
+
 
     return 0;
 }
