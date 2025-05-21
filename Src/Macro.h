@@ -16,6 +16,7 @@
 #include "Macro_VA.h"
 #include "Macro_Str.h"
 #include "Macro_For.h"
+#include "Macro_Join.h"
 
 /* ----------------------------- Basic Macros ----------------------------- */
 /**
@@ -133,5 +134,12 @@
  * @param list of inputs
  */
 #define MACRO_FOR_MAP_ARG(FN_MAP, ARG, ...)                 __MACRO_FOR_MAP_ARG(FN_MAP, ARG, __VA_ARGS__)
+/**
+ * @brief Join multiple inputs and put separator between them
+ * 
+ * @param SEP seperator
+ * @param list of inputs
+ */
+#define MACRO_JOIN(SEP, ...)                                __MACRO_JOIN(SEP, ...)
 
 #endif // _MACRO_H_
