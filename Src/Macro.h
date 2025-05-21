@@ -145,8 +145,18 @@
  * @brief Call macro function for multiple inputs and join them
  *
  * @param SEP seperator
+ * @param FN macro that want to use for every inputs
  * @param list of inputs
  */
 #define MACRO_JOIN_FN(SEP, FN, ...)                         __MACRO_JOIN_FN(SEP, FN, __VA_ARGS__)
+/**
+ * @brief Call macro function for multiple inputs and join them
+ *
+ * @param SEP seperator
+ * @param FN macro that want to use for every inputs
+ * @param ARG given argument that pass to FN
+ * @param list of inputs
+ */
+#define MACRO_JOIN_FN_ARG(SEP, FN, ARG, ...)                __MACRO_JOIN_FN_ARG(SEP, FN, ARG, __VA_ARGS__)
 
 #endif // _MACRO_H_
