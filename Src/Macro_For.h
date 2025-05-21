@@ -119,7 +119,7 @@
 #define __MACRO_FOR_ARG_ROOT(FN, ARG, N, ...)           __MACRO_FOR_ARG_ROOT_(FN, ARG, N, __VA_ARGS__)
 #define __MACRO_FOR_ARG_ROOT_(FN, ARG, N, ...)          __MACRO_FOR_ARG_ ##N (FN, ARG, __VA_ARGS__)
 
-#define __MACRO_FOR_ARG_0(FN, ARG, ...)                 FN(ARG)
+#define __MACRO_FOR_ARG_0(FN, ARG, ...)                 __MACRO_FN(FN, ARG)
 #define __MACRO_FOR_ARG_1(FN, ARG, X, ...)              __MACRO_FN(FN, ARG, X) 
 #define __MACRO_FOR_ARG_2(FN, ARG, X, ...)              __MACRO_FN(FN, ARG, X)  __MACRO_FOR_ARG_1(FN, ARG, __VA_ARGS__)
 #define __MACRO_FOR_ARG_3(FN, ARG, X, ...)              __MACRO_FN(FN, ARG, X)  __MACRO_FOR_ARG_2(FN, ARG, __VA_ARGS__)
