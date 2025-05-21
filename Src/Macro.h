@@ -175,6 +175,13 @@
  * @param list of inputs
  */
 #define MACRO_JOIN_FN_TUPLE_ARG(SEP, FN, ARG, ...)          __MACRO_JOIN_FN_TUPLE_ARG(SEP, FN, ARG, __VA_ARGS__)
-
+/**
+ * @brief Call macro map function for multiple inputs and join them
+ *
+ * @param SEP separator
+ * @param FN_MAP list of macro functions
+ * @param list of inputs
+ */
+#define MACRO_JOIN_FN_MAP(SEP, FN_MAP, ...)                 __MACRO_JOIN_FN_MAP(SEP, FN_MAP, __VA_ARGS__)
 
 #endif // _MACRO_H_
