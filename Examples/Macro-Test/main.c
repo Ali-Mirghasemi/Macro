@@ -287,6 +287,19 @@ Assert_Line Test_Join(void) {
     const char* TEST5_EXPECTED = "joinArg-(X + Y) | joinArg-(A + B)";
         
     assertReturnLine(Str, TEST5_RESULT, TEST5_EXPECTED);
+    // Join Fn Map
+    #define __MY_JOIN_MAP_0()                   MACRO_STR(None)
+    #define __MY_JOIN_MAP_1(A)                  MACRO_STR(A)
+    #define __MY_JOIN_MAP_2(A, B)               MACRO_STR(A, - , B)
+    #define __MY_JOIN_MAP_3(A, B, C)            MACRO_STR(A, ., B, ., C)
+    
+    const char* TEST6_RESULT = MACRO_JOIN_FN_MAP(" | ", 
+        (__MY_JOIN_MAP_3, __MY_JOIN_MAP_2, __MY_JOIN_MAP_1, __MY_JOIN_MAP_0), 
+        (X), (A, B), (), (X, Y, Z));
+    const char* TEST6_EXPECTED = "X | A-B | None | X.Y.Z";
+        
+    assertReturnLine(Str, TEST6_RESULT, TEST6_EXPECTED);
+    
 
 
     return 0;
