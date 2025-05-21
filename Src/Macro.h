@@ -166,5 +166,15 @@
  * @param list of inputs
  */
 #define MACRO_JOIN_FN_TUPLE(SEP, FN, ...)                   __MACRO_JOIN_FN_TUPLE(SEP, FN, __VA_ARGS__)
+/**
+ * @brief Call macro function for multiple tuple inputs and join them
+ *
+ * @param SEP separator
+ * @param FN macro that want to use for every inputs
+ * @param ARG given argument that pass to FN
+ * @param list of inputs
+ */
+#define MACRO_JOIN_FN_TUPLE_ARG(SEP, FN, ARG, ...)          __MACRO_JOIN_FN_TUPLE_ARG(SEP, FN, ARG, __VA_ARGS__)
+
 
 #endif // _MACRO_H_
