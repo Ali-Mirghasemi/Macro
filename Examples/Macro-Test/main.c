@@ -259,10 +259,16 @@ Assert_Line Test_For(void) {
 }
 
 Assert_Line Test_Join(void) {
+    ASSERT_PRINT_HEADER("Join", 64, '-');
     // Simple Join
     const char* TEST1_RESULT = MACRO_JOIN("-", "ABC", "123", "XYZ");
     const char* TEST1_EXPECTED = "ABC-123-XYZ";
     assertReturnLine(Str, TEST1_RESULT, TEST1_EXPECTED);
+    // Join Fn
+    #define __MY_JOIN_FN(X)             "." #X "."
+    const char* TEST2_RESULT = MACRO_JOIN_FN("_", __MY_JOIN_FN, X, Y, Z);
+    const char* TEST2_EXPECTED = ".X._.Y._.Z.";
+    assertReturnLine(Str, TEST2_RESULT, TEST2_EXPECTED);
 
     return 0;
 }
