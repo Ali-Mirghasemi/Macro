@@ -137,14 +137,14 @@
 /**
  * @brief Join multiple inputs and put separator between them
  *
- * @param SEP seperator
+ * @param SEP separator
  * @param list of inputs
  */
 #define MACRO_JOIN(SEP, ...)                                __MACRO_JOIN(SEP, __VA_ARGS__)
 /**
  * @brief Call macro function for multiple inputs and join them
  *
- * @param SEP seperator
+ * @param SEP separator
  * @param FN macro that want to use for every inputs
  * @param list of inputs
  */
@@ -152,11 +152,19 @@
 /**
  * @brief Call macro function for multiple inputs and join them
  *
- * @param SEP seperator
+ * @param SEP separator
  * @param FN macro that want to use for every inputs
  * @param ARG given argument that pass to FN
  * @param list of inputs
  */
 #define MACRO_JOIN_FN_ARG(SEP, FN, ARG, ...)                __MACRO_JOIN_FN_ARG(SEP, FN, ARG, __VA_ARGS__)
+/**
+ * @brief Call macro function for multiple inputs and join them
+ *
+ * @param SEP separator
+ * @param FN macro that want to use for every inputs
+ * @param list of inputs
+ */
+#define MACRO_JOIN_FN_TUPLE(SEP, FN, ...)                   __MACRO_JOIN_FN_TUPLE(SEP, FN, __VA_ARGS__)
 
 #endif // _MACRO_H_
