@@ -7,6 +7,7 @@ Assert_Line Test_VA_ARGS(void);
 Assert_Line Test_Str(void);
 Assert_Line Test_Fn(void);
 Assert_Line Test_For(void);
+Assert_Line Test_Join(void);
 
 
 static const TestCase_Fn TESTS[] = {
@@ -14,6 +15,7 @@ static const TestCase_Fn TESTS[] = {
     Test_Str,
     Test_Fn,
     Test_For,
+    Test_Join,
 };
 static const uint32_t TESTES_LEN = sizeof(TESTS) / sizeof(TESTS[0]);
 
@@ -252,6 +254,15 @@ Assert_Line Test_For(void) {
         "MyArg-O3-A-B-C",
     };
     assertReturnLine(StrList, TEST_ARRAY_LEFT2, TEST_ARRAY_RIGHT2, 4);
+
+    return 0;
+}
+
+Assert_Line Test_Join(void) {
+    // Simple Join
+    const char* TEST1_RESULT = MACRO_JOIN("-", "ABC", "123", "XYZ");
+    const char* TEST1_EXPECTED = "ABC-123-XYZ";
+    assertReturnLine(Str, TEST1_RESULT, TEST1_EXPECTED);
 
     return 0;
 }
