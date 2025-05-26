@@ -18,6 +18,10 @@
 #include "Macro_For.h"
 #include "Macro_Join.h"
 
+#define MACRO_VER_MAJOR    0
+#define MACRO_VER_MINOR    1
+#define MACRO_VER_FIX      0
+
 /* ----------------------------- Basic Macros ----------------------------- */
 /**
  * @brief Return array length
@@ -192,6 +196,31 @@
  * @param list of inputs
  */
 #define MACRO_JOIN_FN_MAP_ARG(SEP, FN_MAP, ARG, ...)        __MACRO_JOIN_FN_MAP_ARG(SEP, FN_MAP, ARG, __VA_ARGS__)
-
+/**
+ * @brief build an string form given version codes
+ * 
+ * @param major
+ * @param minor
+ * @param fix
+ * @return return an string "0.1.5"
+ */
+#define MACRO_VER_STR_BUILD(major, minor, fix)              __MACRO_VER_STR_BUILD(major, minor, fix)
+/**
+ * @brief build an string form given version codes
+ * 
+ * @param major
+ * @param minor
+ * @param fix
+ * @return return an integer (unsigned long), ex: 1.5.2 -> 1005002
+ */
+#define MACRO_VER_BUILD(major, minor, fix)                  __MACRO_VER_STR(major, minor, fix)
+/**
+ * @brief Return macro library version code in integer
+ */
+#define MACRO_VER                                           MACRO_VER_BUILD(MACRO_VER_MAJOR, MACRO_VER_MINOR, MACRO_VER_FIX)
+/**
+ * @brief Return macro library version code in string
+ */
+#define MACRO_VER_STR                                       MACRO_VER_STR_BUILD(MACRO_VER_MAJOR, MACRO_VER_MINOR, MACRO_VER_FIX)
 
 #endif // _MACRO_H_
