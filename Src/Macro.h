@@ -20,9 +20,15 @@
 
 #define MACRO_VER_MAJOR    0
 #define MACRO_VER_MINOR    1
-#define MACRO_VER_FIX      0
+#define MACRO_VER_FIX      1
 
 /* ----------------------------- Basic Macros ----------------------------- */
+/**
+ * @brief Dummy macro to use in other macros
+ *
+ * @param ... inputs
+ */
+#define MACRO_DUMMY(...)                                    __MACRO_DUMMY(__VA_ARGS__)
 /**
  * @brief Return array length
  *
