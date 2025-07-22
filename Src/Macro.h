@@ -77,12 +77,28 @@
  */
 #define MACRO_TUPLE_EXPAND(X)                               __MACRO_TUPLE_EXPAND(X)
 /**
+ * @brief Expand a tuple to usable arguments
+ * Ex: (A, B, C) -> A, B, C
+ *
+ * @param IDX using a integer number between 0~99 for avoid recursive bug
+ * @param X Tuple arguments
+ */
+#define MACRO_TUPLE_EXPANDX(IDX, X)                         __MACRO_TUPLE_EXPANDX(IDX, X)
+/**
  * @brief Use Fn with given arguments
  *
  * @param FN Macro like function as input
  * @param list of inputs
  */
 #define MACRO_FN(FN, ...)                                   __MACRO_FN(FN, __VA_ARGS__)
+/**
+ * @brief Use Fn with given arguments
+ *
+ * @param IDX using a integer number between 0~99 for avoid recursive bug
+ * @param FN Macro like function as input
+ * @param list of inputs
+ */
+#define MACRO_FNX(IDX, FN, ...)                             __MACRO_FNX(IDX, FN, __VA_ARGS__)
 /**
  * @brief Map list of macro functions based on number of inputs
  *
@@ -93,11 +109,28 @@
 /**
  * @brief Map list of macro functions based on number of inputs
  *
+ * @param IDX using a integer number between 0~99 for avoid recursive bug
+ * @param FN_MAP tuple of macro functions
+ * @param list of inputs
+ */
+#define MACRO_FN_MAPX(IDX, FN_MAP, ...)                     __MACRO_FN_MAPX(IDX, FN_MAP, __VA_ARGS__)
+/**
+ * @brief Map list of macro functions based on number of inputs
+ *
  * @param FN_MAP tuple of macro functions
  * @param ARG given argument that pass to FN
  * @param list of inputs
  */
 #define MACRO_FN_MAP_ARG(FN_MAP, ARG, ...)                  __MACRO_FN_MAP_ARG(FN_MAP, ARG, __VA_ARGS__)
+/**
+ * @brief Map list of macro functions based on number of inputs
+ *
+ * @param IDX using a integer number between 0~99 for avoid recursive bug
+ * @param FN_MAP tuple of macro functions
+ * @param ARG given argument that pass to FN
+ * @param list of inputs
+ */
+#define MACRO_FN_MAP_ARGX(IDX, FN_MAP, ARG, ...)             __MACRO_FN_MAP_ARGX(IDX, FN_MAP, ARG, __VA_ARGS__)
 /**
  * @brief For each over given parameters
  *
